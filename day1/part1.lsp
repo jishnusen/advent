@@ -8,5 +8,5 @@
 
 (princ
   (reduce #'+ (mapcar #'get-value
-                      (uiop:read-file-lines "/home/jishnu/Documents/code/advent-clisp/day1/input.txt"))))
+                      (uiop:read-file-lines "input.txt"))))
 
