@@ -1,16 +1,25 @@
-(defparameter *testcase* "Game 31: 1 red, 5 blue, 10 green; 5 green, 6 blue, 12 red; 4 red, 12 blue, 4 green")
+(defparameter *testcase* "3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green")
+
+(defun strip-split (str &key separator)
+  (remove ""
+          (mapcar (lambda (s) (string-left-trim " " s))
+                  (uiop:split-string str :separator (or separator " "))
+                  )
+          :test #'equal
+          )
+  )
 
 (defun split-game (str)
-  (uiop:split-string str :separator ":"))
+  (strip-split str :separator ":"))
 
 (defun split-plays (str)
-  (uiop:split-string str :separator ";"))
+  (strip-split str :separator ";"))
 
 (defun split-steps (str)
-  (uiop:split-string str :separator ","))
+  (strip-split str :separator ","))
 
 (defun game-no (str)
- (parse-integer (car (last (uiop:split-string str)))))
+ (parse-integer (car (last (strip-split str)))))
 
 (defun check-draw (draw color)
   (cond
@@ -23,9 +32,9 @@
 
 (defun validate (steps)
   (if steps
-    (let ((step (string-left-trim " " (car steps))))
-      (let ((draw (parse-integer (car (uiop:split-string step))))
-          (color (car (last (uiop:split-string step)))))
+    (let ((step (car steps)))
+      (let ((draw (parse-integer (car (strip-split step))))
+          (color (car (last (strip-split step)))))
         (cond
           ((check-draw draw color) (validate (cdr steps)))
           (t nil)
@@ -54,5 +63,8 @@
     )
   )
 
-(reduce #'+ (mapcar #'check-game
-          (uiop:read-file-lines "input.txt")))
+(defun part1 ()
+  (reduce #'+
+          (mapcar #'check-game (uiop:read-file-lines "input.txt"))
+          )
+  )
