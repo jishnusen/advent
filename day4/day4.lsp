@@ -19,15 +19,41 @@
     (t (count-matches (cdr draw) winners)))
   )
 
-(defun score (row)
+(defun count-row-matches (row)
   (let* ((dw (cadr (uiop:split-string row :separator ":")))
          (dw-split (uiop:split-string dw :separator "|"))
          (draw (parse-nums (uiop:split-string (car dw-split))))
          (winners (parse-nums (uiop:split-string (cadr dw-split))))
          )
-    (ash 1 (- (count-matches draw winners) 1))
+    (count-matches draw winners)
     )
+  )
+
+(defun score (row)
+    (ash 1 (- (count-row-matches row) 1))
   )
 
 (defun part1 (lines)
   (reduce #'+ (mapcar #'score lines)))
+
+(defun incr-list (l n a)
+  (cond
+    ((> n 0) (cons (+ (car l) a) (incr-list (cdr l) (- n 1) a)))
+    (t l))
+  )
+
+(defun count-cards (lines counts)
+  (cond
+    ((null lines) 0)
+    (t (let* ((row (car lines))
+             (matches (count-row-matches row))
+             (our-count (car counts))
+             )
+        (+ our-count (count-cards (cdr lines) (incr-list (cdr counts) matches our-count))))
+       )
+    )
+  )
+
+(defun part2 (lines)
+  (count-cards lines (make-list (length lines) :initial-element 1))
+  )
