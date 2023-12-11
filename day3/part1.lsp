@@ -48,8 +48,6 @@
     )
   )
 
-(defun part1 ()
-  (let ((input (uiop:read-file-lines "input.txt")))
-    (process input 0 (length input))
-    )
+(defun part1 (lines)
+  (process lines 0 (length lines))
   )
