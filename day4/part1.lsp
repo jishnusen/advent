@@ -12,11 +12,11 @@
     )
   )
 
-(defun calc-winnings (draw winners)
+(defun count-matches (draw winners)
   (cond
-    ((null draw) 1)
-    ((member (car draw) winners) (* 2 (calc-winnings (cdr draw) winners)))
-    (t (calc-winnings (cdr draw) winners)))
+    ((null draw) 0)
+    ((member (car draw) winners) (+ 1 (count-matches (cdr draw) winners)))
+    (t (count-matches (cdr draw) winners)))
   )
 
 (defun score (row)
@@ -25,7 +25,7 @@
          (draw (parse-nums (uiop:split-string (car dw-split))))
          (winners (parse-nums (uiop:split-string (cadr dw-split))))
          )
-    (floor (calc-winnings draw winners) 2)
+    (ash 1 (- (count-matches draw winners) 1))
     )
   )
 
