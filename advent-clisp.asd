@@ -13,5 +13,9 @@
                (:file "day3/part1")
                (:file "day3/part2")
                (:file "day4/day4")
+               (:file "main")
                )
+  :build-operation "program-op"
+  :build-pathname "advent"
+  :entry-point "main:main"
   )
