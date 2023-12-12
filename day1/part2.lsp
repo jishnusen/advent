@@ -4,13 +4,10 @@
                           ("four" . 4)
                           ("five" . 5)
                           ("six" . 6)
-			  ("seven" . 7)
+                          ("seven" . 7)
                           ("eight" . 8)
                           ("nine" . 9)
-			  ))
-
-(defun word-to-number (word)
-  (cdr (assoc word *wordmap*)))
+                          ))
 
 (defun check-word (wmap word)
   (let ((f (first wmap))
@@ -35,8 +32,6 @@
 (defun get-value (str)
   (+ (* (first-num *wordmap* str) 10) (first-num (mapcar #'reverse-car *wordmap*) (reverse str))))
 
-(first-num (mapcar #'reverse-car *wordmap*) (reverse "onetwo"))
-
-(reduce #'+ (mapcar #'get-value
-                    (uiop:read-file-lines "input.txt")))
-
+(defun part2 (lines)
+  (reduce #'+ (mapcar #'get-value lines))
+  )
