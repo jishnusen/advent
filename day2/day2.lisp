@@ -1,9 +1,9 @@
-(defpackage day2
+(defpackage #:day2
   (:use #:cl)
   (:export #:part1
            #:part2))
 
-(in-package :day2)
+(in-package #:day2)
 
 (defun lastcar (l) (car (last l)))
 

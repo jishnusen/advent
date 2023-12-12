@@ -1,11 +1,8 @@
-(ql:quickload :cl-ppcre)
-(ql:quickload :alexandria)
-
-(defpackage day3-part2
+(defpackage #:day3/part2
   (:use #:cl)
   (:export #:solve))
 
-(in-package :day3-part2)
+(in-package #:day3/part2)
 
 (defun make-pairs (l)
   (cond

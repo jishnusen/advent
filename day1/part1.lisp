@@ -1,8 +1,8 @@
-(defpackage day1-part1
+(defpackage #:day1/part1
   (:use #:cl)
   (:export #:solve))
 
-(in-package :day1-part1)
+(in-package #:day1/part1)
 
 (defun parse-number (str)
   (loop for char across str

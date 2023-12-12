@@ -1,8 +1,8 @@
-(defpackage day1-part2
+(defpackage #:day1/part2
   (:use #:cl)
   (:export #:solve))
 
-(in-package :day1-part2)
+(in-package #:day1/part2)
 
 (defparameter *wordmap* '(("one" . 1)
                           ("two" . 2)
