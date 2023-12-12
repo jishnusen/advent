@@ -7,8 +7,7 @@
   :version "0.0.1"
   :serial t
   :depends-on (#:cl-ppcre #:alexandria)
-  :components ((:file "package")
-               (:file "day1/part1")
+  :components ((:file "day1/part1")
                (:file "day1/part2")
                (:file "day2/day2")
                (:file "day3/part1")
