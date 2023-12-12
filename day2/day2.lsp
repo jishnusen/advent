@@ -1,3 +1,10 @@
+(defpackage day2
+  (:use #:cl)
+  (:export #:part1
+           #:part2))
+
+(in-package :day2)
+
 (defun lastcar (l) (car (last l)))
 
 (defun strip-split (str &key separator)

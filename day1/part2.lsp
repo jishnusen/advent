@@ -1,3 +1,9 @@
+(defpackage day1-part2
+  (:use #:cl)
+  (:export #:solve))
+
+(in-package :day1-part2)
+
 (defparameter *wordmap* '(("one" . 1)
                           ("two" . 2)
                           ("three" . 3)
@@ -32,6 +38,6 @@
 (defun get-value (str)
   (+ (* (first-num *wordmap* str) 10) (first-num (mapcar #'reverse-car *wordmap*) (reverse str))))
 
-(defun part2 (lines)
+(defun solve (lines)
   (reduce #'+ (mapcar #'get-value lines))
   )

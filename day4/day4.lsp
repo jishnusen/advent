@@ -1,3 +1,10 @@
+(defpackage day4
+  (:use #:cl)
+  (:export #:part1
+           #:part2))
+
+(in-package :day4)
+
 (defun card-no (card-str)
   (parse-integer (cadr (uiop:split-string card-str))))
 

@@ -1,6 +1,10 @@
 (ql:quickload :cl-ppcre)
 
-(defparameter *tcase1* (uiop:read-file-lines "tcase1.txt"))
+(defpackage day3-part1
+  (:use #:cl)
+  (:export #:solve))
+
+(in-package :day3-part1)
 
 (defun make-pairs (l)
   (cond
@@ -48,6 +52,6 @@
     )
   )
 
-(defun part1 (lines)
+(defun solve (lines)
   (process lines 0 (length lines))
   )

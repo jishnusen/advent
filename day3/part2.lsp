@@ -1,6 +1,12 @@
 (ql:quickload :cl-ppcre)
 (ql:quickload :alexandria)
 
+(defpackage day3-part2
+  (:use #:cl)
+  (:export #:solve))
+
+(in-package :day3-part2)
+
 (defun make-pairs (l)
   (cond
     (l (cons (cons (first l) (second l))
@@ -63,6 +69,6 @@
     )
   )
 
-(defun part2 (lines)
+(defun solve (lines)
   (process lines 0 (length lines))
   )
