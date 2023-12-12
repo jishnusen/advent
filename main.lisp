@@ -13,6 +13,7 @@
                        #'day3/part2:solve
                        #'day4:part1
                        #'day4:part2
+                       #'day5:part1
                        ))
 
 (defun run (d f)
@@ -24,7 +25,8 @@
                          ("day3" . "part1")
                          ("day3" . "part2")
                          ("day4" . "part1")
-                         ("day4" . "part2"))
+                         ("day4" . "part2")
+                         ("day5" . "part1"))
                         *funs*))
         )
     (princ (funcall (cdr (assoc d fmap :test #'equal)) input))

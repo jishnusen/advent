@@ -6,13 +6,14 @@
   :license  "MIT"
   :version "0.0.1"
   :serial t
-  :depends-on (#:cl-ppcre #:alexandria)
+  :depends-on (#:cl-ppcre #:alexandria #:trivia)
   :components ((:file "day1/part1")
                (:file "day1/part2")
                (:file "day2/day2")
                (:file "day3/part1")
                (:file "day3/part2")
                (:file "day4/day4")
+               (:file "day5/day5")
                (:file "main")
                )
   :build-operation "program-op"
