@@ -1,4 +1,4 @@
-(defparameter *testcase* "3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green")
+(defun lastcar (l) (car (last l)))
 
 (defun strip-split (str &key separator)
   (remove ""
@@ -19,7 +19,7 @@
   (strip-split str :separator ","))
 
 (defun game-no (str)
- (parse-integer (car (last (strip-split str)))))
+ (parse-integer (lastcar (strip-split str))))
 
 (defun check-draw (draw color)
   (cond
@@ -34,7 +34,7 @@
   (if steps
     (let ((step (car steps)))
       (let ((draw (parse-integer (car (strip-split step))))
-          (color (car (last (strip-split step)))))
+          (color (lastcar (strip-split step))))
         (cond
           ((check-draw draw color) (validate (cdr steps)))
           (t nil)
@@ -54,7 +54,7 @@
 (defun check-game (game)
   (let ((gs (split-game game)))
     (let ((game (game-no (car gs)))
-      (plays (split-plays (car (last gs)))))
+          (plays (split-plays (lastcar gs))))
       (cond
         ((check-plays plays) game)
         (t 0)
@@ -63,8 +63,31 @@
     )
   )
 
-(defun part1 ()
-  (reduce #'+
-          (mapcar #'check-game (uiop:read-file-lines "input.txt"))
-          )
+(defun part1 (lines)
+  (reduce #'+ (mapcar #'check-game lines)))
+
+(defun max-color (c steps)
+  (let ((step (strip-split (car steps))))
+    (let ((draw (car step))
+          (color (lastcar step)))
+      (cond
+        ((null step) 1)
+        ((string= color c) (max (parse-integer draw) (max-color c (cdr steps))))
+        (t (max-color c (cdr steps)))
+        )
+      )
+    )
   )
+
+(defun max-color-game (c game)
+  (let ((plays (lastcar (split-game game))))
+    (reduce #'max (mapcar (lambda (p) (max-color c (split-steps p))) (split-plays plays)))
+    )
+  )
+
+(defun power-game (game)
+  (reduce #'* (mapcar (lambda (c) (max-color-game c game)) '("red" "green" "blue")))
+  )
+
+(defun part2 (lines)
+  (reduce #'+ (mapcar #'power-game lines)))

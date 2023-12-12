@@ -1,5 +1,5 @@
-(ql:quickload "cl-ppcre")
-(ql:quickload "alexandria")
+(ql:quickload :cl-ppcre)
+(ql:quickload :alexandria)
 
 (defun make-pairs (l)
   (cond

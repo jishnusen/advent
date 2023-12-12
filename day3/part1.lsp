@@ -1,4 +1,4 @@
-(ql:quickload "cl-ppcre")
+(ql:quickload :cl-ppcre)
 
 (defparameter *tcase1* (uiop:read-file-lines "tcase1.txt"))
 
