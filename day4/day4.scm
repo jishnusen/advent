@@ -6,8 +6,6 @@
 (use-modules ((f) #:prefix f:)
              ((srfi srfi-1))
              ((ice-9 match))
-             ((ice-9 regex))
-             ((ice-9 curried-definitions))
              )
 
 (define (card->list card)
