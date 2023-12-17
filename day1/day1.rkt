@@ -1,11 +1,6 @@
-#!/usr/bin/env guile \
--e main -s
-!#
-
-(add-to-load-path (string-append (dirname (current-filename)) "/../lib/"))
-(use-modules ((f) #:prefix f:)
-             ((srfi srfi-1) #:select (fold assoc))
-             )
+#! /usr/bin/env racket
+#lang racket/base
+(require racket/file)
 
 (define *wordmap* (map (lambda (kv) (cons (string->list (car kv)) (cdr kv)))
                        '(("one" . 1)
@@ -37,7 +32,7 @@
   (+ (* (line->first-digit line) 10) (line->first-digit (reverse line))))
 
 (define (part1 lines)
-  (fold + 0 (map line->pair-digit (map string->list lines))))
+  (foldl + 0 (map line->pair-digit (map string->list lines))))
 
 
 (define (prefix-match? l p)
@@ -62,13 +57,14 @@
     (+ (* (line->first-match line *wordmap*) 10) (line->first-match (reverse line) wordmaprev))))
 
 (define (part2 lines)
-  (fold + 0 (map line->pair-match (map string->list lines))))
+  (foldl + 0 (map line->pair-match (map string->list lines))))
 
-
-(define (main argv)
-  (let ((input (f:read-lines (cadr argv))))
+(provide main)
+(define (main input)
+  (let ((input (file->lines input)))
     (display (part1 input))
     (display #\newline)
     (display (part2 input))
     (display #\newline))
   )
+
