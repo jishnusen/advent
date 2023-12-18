@@ -31,7 +31,7 @@
     [(cons hd tl) (cond
                    ((> n 0) (cons (+ hd x) (incr-first-n tl (- n 1) x)))
                    (#t l))]
-    (_ l)))
+    [_ l]))
 
 (define (part2 lines [counts (iota (length lines) 1 0)])
   (match lines
