@@ -27,5 +27,7 @@
   (let ((input (file->lines input)))
     (display (part1 input))
     (display #\newline)
+    (display (part2 input))
+    (display #\newline)
     )
   )
