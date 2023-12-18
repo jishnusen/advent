@@ -1,0 +1,31 @@
+#lang racket/base
+(require racket/file)
+(require racket/string)
+(require racket/list)
+
+(define (solve a b)
+  (let ((sq-term (sqrt (- (* a a) (* 4 b)))))
+    (+ 1 (- (ceiling (- (* 0.5 (+ a sq-term)) 1))
+            (floor (+ (* 0.5 (- a sq-term)) 1))))
+    ))
+
+(define (part1 lines)
+  (let ((time (map string->number (cdr (string-split (first lines)))))
+        (distance (map string->number (cdr (string-split (second lines))))))
+    (foldl * 1 (map solve time distance))
+  ))
+
+(define (part2 lines)
+  (let ((time (string->number (string-append* (cdr (string-split (first lines))))))
+        (distance (string->number (string-append* (cdr (string-split (second lines))))))
+        )
+    (solve time distance)
+  ))
+
+(provide main)
+(define (main input)
+  (let ((input (file->lines input)))
+    (display (part1 input))
+    (display #\newline)
+    )
+  )
